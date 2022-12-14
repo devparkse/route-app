@@ -1,9 +1,9 @@
 import React from "react";
 
-const About = () => {
+const About = (props) => {
   return (
     <div className="card card-body">
-      <h2>About</h2>
+      <h2>About {props.title} </h2>
     </div>
   );
 };
