@@ -11,7 +11,13 @@ import Members from "./pages/Members";
 import SongList from "./pages/SongList";
 import Player from "./pages/Player";
 import PlayerIndex from "./pages/PlayerIndex";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NotFound from "./pages/NotFound";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 const App = () => {
   // 멤버목록 데이터
@@ -28,6 +34,7 @@ const App = () => {
 
   // 외부 데이터 가져오기
   const fetchData = async () => {
+    // http://localhost:3000?api_key=4564564&a=hello&start=1&count=5
     // 멤버 목록 가져오기
     const params = {
       start: 1,
@@ -53,13 +60,15 @@ const App = () => {
           {/* <Route path="개발자가설정한URL"/> */}
           {/* <Route path="/  : 도메인만 입력"/> */}
           {/* <Route element= 보여줄 컴포넌트 엘리먼트 /> */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About title="인디밴드" />} />
           <Route path="/members" element={<Members members={members} />} />
           <Route path="/songs" element={<SongList songs={songs} />}>
             <Route index element={<PlayerIndex />} />
             <Route path=":id" element={<Player songs={songs} />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

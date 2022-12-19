@@ -37,6 +37,8 @@ const SongList = (props) => {
     <div className="card card-body">
       <h2>SongList</h2>
       <ul className="list-group">{list}</ul>
+      
+      {/* 중첩 라우터 활용시 내용 출력 컴포넌트 */}
       <Outlet />
     </div>
   );
